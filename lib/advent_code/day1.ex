@@ -65,9 +65,7 @@ defmodule AdventCode.Day1 do
     |> Enum.reduce(0, &(&1 + &2))
   end
 
-  def sort_it(%{left: left, right: right}) do
-    %{left: Enum.sort(left), right: Enum.sort(right)}
-  end
+  def sort_it(%{left: left, right: right}), do: %{left: Enum.sort(left), right: Enum.sort(right)}
 
   defp input do
     """
