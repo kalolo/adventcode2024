@@ -41,6 +41,12 @@ defmodule AdventCode.Day1 do
   """
   def run do
     input()
+    |> sort_it()
+    |> check_distance()
+  end
+
+  def input do
+    raw_input()
     |> String.split("\n")
     |> Enum.reject(&(&1 in [""]))
     |> Enum.map(&String.trim/1)
@@ -52,11 +58,9 @@ defmodule AdventCode.Day1 do
         right: [String.to_integer(second) | acc.right]
       }
     end)
-    |> sort_it()
-    |> check_distance()
   end
 
-  def check_distance(%{left: left, right: right}) do
+  defp check_distance(%{left: left, right: right}) do
     left
     |> Enum.with_index()
     |> Enum.map(fn {left_value, idx} ->
@@ -67,7 +71,7 @@ defmodule AdventCode.Day1 do
 
   def sort_it(%{left: left, right: right}), do: %{left: Enum.sort(left), right: Enum.sort(right)}
 
-  defp input do
+  defp raw_input do
     """
     87501   76559
     70867   16862
